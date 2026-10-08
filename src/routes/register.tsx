@@ -28,11 +28,11 @@ const fields = [
 
 function Register() {
   const nav = useNavigate();
-  const [v, setV] = useState<Record<string, string>>({});
-  const [err, setErr] = useState<Record<string, string>>({});
+  const [v, setV] = useState<Partial<Record<"name"|"email"|"phone"|"pw"|"pw2", string>>>({});
+  const [err, setErr] = useState<Partial<Record<"name"|"email"|"phone"|"pw"|"pw2", string>>>({});
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    const n: Record<string, string> = {};
+    const n: Partial<Record<"name"|"email"|"phone"|"pw"|"pw2", string>> = {};
     if (!v.name?.trim()) n.name = "Name is required.";
     if (!/^\S+@\S+\.\S+$/.test(v.email ?? "")) n.email = "Enter a valid email.";
     if ((v.phone ?? "").replace(/\D/g, "").length < 10) n.phone = "Enter a 10-digit phone number.";

@@ -13,8 +13,13 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppRouteImport } from './routes/_app'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as RegisterRouteImport } from './routes/register'
+import { Route as AppContactsRouteImport } from './routes/_app.contacts'
 import { Route as AppDashboardRouteImport } from './routes/_app.dashboard'
+import { Route as AppHistoryRouteImport } from './routes/_app.history'
 import { Route as AppLocationRouteImport } from './routes/_app.location'
+import { Route as AppProfileRouteImport } from './routes/_app.profile'
+import { Route as AppRiskRouteImport } from './routes/_app.risk'
+import { Route as AppSettingsRouteImport } from './routes/_app.settings'
 import { Route as AppSosRouteImport } from './routes/_app.sos'
 
 const IndexRoute = IndexRouteImport.update({
@@ -36,14 +41,39 @@ const RegisterRoute = RegisterRouteImport.update({
   path: '/register',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppContactsRoute = AppContactsRouteImport.update({
+  id: '/contacts',
+  path: '/contacts',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppDashboardRoute = AppDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
   getParentRoute: () => AppRoute,
 } as any)
+const AppHistoryRoute = AppHistoryRouteImport.update({
+  id: '/history',
+  path: '/history',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppLocationRoute = AppLocationRouteImport.update({
   id: '/location',
   path: '/location',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppProfileRoute = AppProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppRiskRoute = AppRiskRouteImport.update({
+  id: '/risk',
+  path: '/risk',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSettingsRoute = AppSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
   getParentRoute: () => AppRoute,
 } as any)
 const AppSosRoute = AppSosRouteImport.update({
@@ -56,16 +86,26 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
+  '/contacts': typeof AppContactsRoute
   '/dashboard': typeof AppDashboardRoute
+  '/history': typeof AppHistoryRoute
   '/location': typeof AppLocationRoute
+  '/profile': typeof AppProfileRoute
+  '/risk': typeof AppRiskRoute
+  '/settings': typeof AppSettingsRoute
   '/sos': typeof AppSosRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
+  '/contacts': typeof AppContactsRoute
   '/dashboard': typeof AppDashboardRoute
+  '/history': typeof AppHistoryRoute
   '/location': typeof AppLocationRoute
+  '/profile': typeof AppProfileRoute
+  '/risk': typeof AppRiskRoute
+  '/settings': typeof AppSettingsRoute
   '/sos': typeof AppSosRoute
 }
 export interface FileRoutesById {
@@ -74,23 +114,55 @@ export interface FileRoutesById {
   '/_app': typeof AppRouteWithChildren
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
+  '/_app/contacts': typeof AppContactsRoute
   '/_app/dashboard': typeof AppDashboardRoute
+  '/_app/history': typeof AppHistoryRoute
   '/_app/location': typeof AppLocationRoute
+  '/_app/profile': typeof AppProfileRoute
+  '/_app/risk': typeof AppRiskRoute
+  '/_app/settings': typeof AppSettingsRoute
   '/_app/sos': typeof AppSosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/register' | '/dashboard' | '/location' | '/sos'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/register'
+    | '/contacts'
+    | '/dashboard'
+    | '/history'
+    | '/location'
+    | '/profile'
+    | '/risk'
+    | '/settings'
+    | '/sos'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/register' | '/dashboard' | '/location' | '/sos'
+  to:
+    | '/'
+    | '/login'
+    | '/register'
+    | '/contacts'
+    | '/dashboard'
+    | '/history'
+    | '/location'
+    | '/profile'
+    | '/risk'
+    | '/settings'
+    | '/sos'
   id:
     | '__root__'
     | '/'
     | '/_app'
     | '/login'
     | '/register'
+    | '/_app/contacts'
     | '/_app/dashboard'
+    | '/_app/history'
     | '/_app/location'
+    | '/_app/profile'
+    | '/_app/risk'
+    | '/_app/settings'
     | '/_app/sos'
   fileRoutesById: FileRoutesById
 }
@@ -131,6 +203,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RegisterRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_app/contacts': {
+      id: '/_app/contacts'
+      path: '/contacts'
+      fullPath: '/contacts'
+      preLoaderRoute: typeof AppContactsRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/dashboard': {
       id: '/_app/dashboard'
       path: '/dashboard'
@@ -138,11 +217,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppDashboardRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/history': {
+      id: '/_app/history'
+      path: '/history'
+      fullPath: '/history'
+      preLoaderRoute: typeof AppHistoryRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/location': {
       id: '/_app/location'
       path: '/location'
       fullPath: '/location'
       preLoaderRoute: typeof AppLocationRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/profile': {
+      id: '/_app/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof AppProfileRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/risk': {
+      id: '/_app/risk'
+      path: '/risk'
+      fullPath: '/risk'
+      preLoaderRoute: typeof AppRiskRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/settings': {
+      id: '/_app/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AppSettingsRouteImport
       parentRoute: typeof AppRoute
     }
     '/_app/sos': {
@@ -156,14 +263,24 @@ declare module '@tanstack/react-router' {
 }
 
 interface AppRouteChildren {
+  AppContactsRoute: typeof AppContactsRoute
   AppDashboardRoute: typeof AppDashboardRoute
+  AppHistoryRoute: typeof AppHistoryRoute
   AppLocationRoute: typeof AppLocationRoute
+  AppProfileRoute: typeof AppProfileRoute
+  AppRiskRoute: typeof AppRiskRoute
+  AppSettingsRoute: typeof AppSettingsRoute
   AppSosRoute: typeof AppSosRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
+  AppContactsRoute: AppContactsRoute,
   AppDashboardRoute: AppDashboardRoute,
+  AppHistoryRoute: AppHistoryRoute,
   AppLocationRoute: AppLocationRoute,
+  AppProfileRoute: AppProfileRoute,
+  AppRiskRoute: AppRiskRoute,
+  AppSettingsRoute: AppSettingsRoute,
   AppSosRoute: AppSosRoute,
 }
 

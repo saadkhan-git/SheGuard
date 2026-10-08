@@ -12,7 +12,7 @@ export type RiskLevel = "LOW" | "MEDIUM" | "HIGH";
 export function assessRisk(answers: Record<string, boolean>): { level: RiskLevel; reasons: string[] } {
   const yes = riskQuestions.filter((q) => answers[q.id]);
   const reasons = yes.map((q) => q.reason);
-  if (answers.followed || yes.length >= 4) return { level: "HIGH", reasons };
+  if (answers["followed"] || yes.length >= 4) return { level: "HIGH", reasons };
   if (yes.length >= 2) return { level: "MEDIUM", reasons };
   return { level: "LOW", reasons };
 }

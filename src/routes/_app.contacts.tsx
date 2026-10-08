@@ -31,7 +31,7 @@ function ContactsPage() {
   const [open, setOpen] = useState(false);
   const [editId, setEditId] = useState<string | null>(null);
   const [form, setForm] = useState(empty);
-  const [err, setErr] = useState<Record<string, string>>({});
+  const [err, setErr] = useState<Partial<Record<"name" | "phone", string>>>({});
   const [del, setDel] = useState<Contact | null>(null);
 
   const openForm = (c?: Contact) => {
@@ -42,12 +42,12 @@ function ContactsPage() {
   };
   const save = (e: React.FormEvent) => {
     e.preventDefault();
-    const n: Record<string, string> = {};
+    const n: Partial<Record<"name" | "phone", string>> = {};
     if (!form.name.trim()) n.name = "Name is required.";
     if (form.phone.replace(/\D/g, "").length < 10) n.phone = "Enter a valid 10-digit phone number.";
     setErr(n);
     if (Object.keys(n).length) return;
-    const initials = form.name.trim()[0].toUpperCase();
+    const initials = (form.name.trim()[0] ?? "?").toUpperCase();
     if (editId) setContacts(contacts.map((c) => (c.id === editId ? { ...c, ...form, initials } : c)));
     else setContacts([...contacts, { id: crypto.randomUUID(), ...form, initials, primary: contacts.length === 0 }]);
     toast.success(editId ? "Contact updated" : "Contact added (this session only)");

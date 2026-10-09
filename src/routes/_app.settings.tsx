@@ -25,7 +25,7 @@ const toggles: { key: keyof Settings; label: string; desc: string; icon: typeof 
   { key: "location", label: "Location Services", desc: "Include location in alerts (browser permission required)", icon: MapPin },
   { key: "shake", label: "Shake to Alert", desc: "Shake your phone to open the SOS flow", icon: Smartphone },
   { key: "shareHistory", label: "Save emergency history", desc: "Keep a log of events on this device", icon: Lock },
-  { key: "darkMode", label: "Dark Mode", desc: "Coming soon", icon: Moon },
+  { key: "darkMode", label: "Dark Mode", desc: "Easier on the eyes at night", icon: Moon },
 ];
 
 function SettingsPage() {

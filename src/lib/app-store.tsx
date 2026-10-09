@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import { initialContacts, initialHistory, type Contact, type HistoryEvent } from "./mock-data";
 
 export type Settings = {
@@ -39,6 +39,9 @@ export function AppStoreProvider({ children }: { children: ReactNode }) {
     shareHistory: true,
     language: "English",
   });
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", settings.darkMode);
+  }, [settings.darkMode]);
   return (
     <Ctx.Provider
       value={{

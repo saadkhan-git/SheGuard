@@ -8,12 +8,38 @@ import { cn } from "@/lib/utils";
 
 export type SosState = "idle" | "preparing" | "ready" | "queued";
 
+/** Plays a short two-tone siren using the Web Audio API (no audio file needed). */
+export function playSosAlarm(durationMs = 3000) {
+  try {
+    const Ctx = window.AudioContext ?? (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
+    if (!Ctx) return;
+    const ctx = new Ctx();
+    const gain = ctx.createGain();
+    gain.gain.setValueAtTime(0.25, ctx.currentTime);
+    gain.connect(ctx.destination);
+    const osc = ctx.createOscillator();
+    osc.type = "square";
+    osc.connect(gain);
+    const end = ctx.currentTime + durationMs / 1000;
+    for (let t = ctx.currentTime; t < end; t += 0.5) {
+      osc.frequency.setValueAtTime(880, t);
+      osc.frequency.setValueAtTime(660, t + 0.25);
+    }
+    osc.start();
+    osc.stop(end);
+    osc.onended = () => void ctx.close();
+  } catch {
+    // Audio blocked or unsupported — ignore silently.
+  }
+}
+
 export function SosButton({ size = "lg", onState }: { size?: "md" | "lg"; onState?: (s: SosState) => void }) {
   const [confirm, setConfirm] = useState(false);
   const { online, pending, setPending, addHistory } = useAppStore();
 
   const start = () => {
     setConfirm(false);
+    playSosAlarm();
     onState?.("preparing");
     setTimeout(() => {
       if (!online) {

@@ -19,20 +19,7 @@ The interface is designed around a clear, accessible dashboard with a pink-and-w
 
 ## Website Screenshots
 
-### 1. Landing Page
-![SheGuard landing page](assets/screenshots/01-landing-page.png)
-
-### 2. Registration Page
-![SheGuard registration page](assets/screenshots/02-registration-page.png)
-
-### 3. User Dashboard
-![SheGuard dashboard](assets/screenshots/03-dashboard.png)
-
-### 4. Location & Live Location Sharing
-![SheGuard location page](assets/screenshots/04-location-sharing.png)
-
-### 5. Trusted Contacts
-![SheGuard trusted contacts page](assets/screenshots/05-trusted-contacts.png)
+Screenshots are not currently included in this repository. Add the images to `assets/screenshots/` and update this section with their exact filenames when they are available.
 
 ## Key Features
 
@@ -179,7 +166,7 @@ SheGuard is an academic frontend prototype created for learning and demonstratio
 
 ## Author
 
-Developed as a **B.Tech Computer Science **.
+Developed as a **B.Tech Computer Science mini-project**.
 
 ---
 

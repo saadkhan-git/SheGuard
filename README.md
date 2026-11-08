@@ -179,7 +179,7 @@ SheGuard is an academic frontend prototype created for learning and demonstratio
 
 ## Author
 
-Developed as a **B.Tech Computer Science mini project**.
+Developed as a **B.Tech Computer Science **.
 
 ---
 

@@ -11,7 +11,7 @@
 
 ## Project Overview
 
-**SheGuard** is a B.Tech CSE mini-project frontend prototype for a women-safety and emergency-response platform. It brings essential safety tools together in a single interface, including an SOS flow, location display and sharing controls, trusted contacts, a rule-based risk check, and an emergency activity history.
+**SheGuard** is a frontend prototype for a women-safety and emergency-response platform. It brings essential safety tools together in a single interface, including an SOS flow, location display and sharing controls, trusted contacts, a rule-based risk check, and an emergency activity history.
 
 The interface is designed around a clear, accessible dashboard with a pink-and-white visual theme, prominent emergency actions, and simple navigation.
 
